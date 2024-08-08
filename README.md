@@ -1,7 +1,7 @@
 # Getting Started With Robot Framework In Python
 
 ![RobotFramework_Logo](https://github.com/user-attachments/assets/80317436-3905-4c43-8d87-9a64ee10e5a5)
-<div align="center"><a href="https://miro.medium.com/v2/resize:fit:700/1*AqIB9Nfeq-7lYhOCF7aLGA.png">Image Credit</a></div>
+<div align="left"><a href="https://miro.medium.com/v2/resize:fit:700/1*AqIB9Nfeq-7lYhOCF7aLGA.png">Image Credit</a></div>
 <br/>
 
 Perform the following steps for running Robot tests on local machine or LambdaTest Cloud Grid
