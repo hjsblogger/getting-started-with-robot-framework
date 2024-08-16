@@ -6,8 +6,9 @@ Resource  	../../Resources/PageObject/KeyDefs/Common.robot
 Resource  	../../Resources/PageObject/KeyDefs/SeleniumDrivers.robot
 Variables 	../../Resources/PageObject/Locators/Locators.py
 
-Library  SeleniumLibrary
-Library  BuiltIn
+Library     SeleniumLibrary
+Library     OperatingSystem
+Library     BuiltIn
 
 *** Variables ***
 ${site_url}  https://scrapingclub.com/exercise/list_infinite_scroll/
@@ -19,7 +20,7 @@ Scroll Down
 
 Get Window Height
     ${height} =  Execute JavaScript  return document.body.scrollHeight
-    [Return]  ${height}
+    RETURN             ${height}
 
 *** Variables ***
 
