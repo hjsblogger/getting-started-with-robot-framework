@@ -73,9 +73,9 @@ Test Teardown
 		Open test browser	${site_url}		${BROWSER_CLOUD}		${CAPABILITIES_CLOUD}
 	END
 	Maximize Browser Window
-	Move to Element local test browser
+	Move to Element
 	Sleep	3s
-	Click Menu Item local test browser
+	Click Menu Item
 	Sleep	2s
 	#Check the new page title
 	${curr_page_title}  Get Title

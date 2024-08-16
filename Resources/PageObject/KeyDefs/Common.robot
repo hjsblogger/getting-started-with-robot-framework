@@ -33,13 +33,13 @@ Open local test browser
 Close local test browser
     Close Browser
 
-Move to Element local test browser
+Move to Element
     [Documentation]    Hover over the menu item
     ${menu_item}=    Get WebElement    partial link=${MENU_ITEM}
     Mouse Over    ${menu_item}
     Sleep    1s    # equivalent of time.sleep(1)
 
-Click Menu Item local test browser
+Click Menu Item
     [Documentation]    Click the submenu item once it opens up
     Click Link      partial link=${DESIGN_ITEM}
     Sleep   10s
