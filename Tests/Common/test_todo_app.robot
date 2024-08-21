@@ -56,8 +56,6 @@ ${BROWSER_LOCAL_3}	  	  ${lt_options_local_3['browserName']}
 ${BROWSER_CLOUD_1}	      ${lt_options_cloud_1['browserName']}
 &{CAPABILITIES_CLOUD_1}     LT:Options=&{lt_options_cloud_1}
 
-# &{lt_options}       browserName=${browserName}      name=RobotFramework Lambda Test    buildName=Robot Build
-
 *** Comments ***
 # Configuration for second test scenario
 
