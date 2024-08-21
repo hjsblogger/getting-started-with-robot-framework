@@ -12,11 +12,16 @@ ${DESIGN_ITEM}      Designs
 
 *** Keywords ***
 Open test browser
-    [Arguments]     ${TEST_URL}     ${BROWSER}      ${CAPABILITIES}
+    [Arguments]     ${TEST_URL}     ${BROWSER}      ${lt_options}
     [Timeout]       ${TIMEOUT}
+    ${options}=    Evaluate      sys.modules['selenium.webdriver'].${BROWSER}Options()    sys, selenium.webdriver
+    Call Method    ${options}    set_capability    LT:Options    ${lt_options}
     Open browser    ${TEST_URL}     ${BROWSER}
-    ...  remote_url=${REMOTE_URL}
-    ...  desired_capabilities=${CAPABILITIES}
+    ...    remote_url=${REMOTE_URL}
+    # [ WARN ] desired_capabilities has been deprecated and removed.
+    # Please use options to configure browsers as per documentation.
+    # ...  desired_capabilities=${CAPABILITIES}
+    ...    options=${options}
 
 Close test browser
     Run keyword if  '${REMOTE_URL}' != ''
