@@ -36,3 +36,10 @@ pageMessage = "css:[data-id='214968'] > .mb-4"
 # Reference - https://github.com/hjsblogger/web-scraping-with-python/
 # blob/main/tests/beautiful-soup/test_infinite_scraping.py
 xProduct = "xpath=/html/body/div[3]/div/div/div[1]/div[3]/div/div[15]/a"
+
+########## Locators for mouse interactions ##########
+xDraggableFrame_1 = "xpath=//span[.='Draggable 1']"
+xDraggableFrame_2 = "xpath=//*[@id='todrag']/span[2]"
+xDroppableFrame = "xpath=//div[@id='mydropzone']"
+idDroppableList = "id=droppedlist"
+spDroppableList = "tag=span"

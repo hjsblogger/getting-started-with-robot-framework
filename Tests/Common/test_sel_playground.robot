@@ -11,7 +11,8 @@ Library		OperatingSystem
 
 *** Variables ***
 
-${site_url}  		https://www.lambdatest.com/selenium-playground/
+${site_url_1}  		https://www.lambdatest.com/selenium-playground/
+${site_url_2}  		https://www.lambdatest.com/selenium-playground/drag-and-drop-demo
 
 *** Comments ***
 # Configuration for first test scenario
@@ -20,12 +21,12 @@ ${site_url}  		https://www.lambdatest.com/selenium-playground/
 ${EXEC_PLATFORM}  %{EXEC_PLATFORM}
 
 &{lt_local_options}
-    ...  browserName=Firefox
+    ...  browserName=Chrome
 
 ${BROWSER_LOCAL}	  	  	${lt_local_options['browserName']}
 
 &{lt_cloud_options}
-    ...  browserName=Firefox
+    ...  browserName=Chrome
     ...  platformName=MacOS Monterey
     ...  browserVersion=latest-4
     ...  visual=true
@@ -51,20 +52,20 @@ Test Teardown
 
 *** Test Cases ***
 
-Example 2: [Playground] Parallel Testing with Robot framework
+Example 1: [Playground] Send Keys Demo with Robot Framework
 	[tags]  Selenium Playground Automation
 	[Timeout]   ${TIMEOUT}
 	# Get Environment Variables
 	Log To Console		Tests executed on: ${EXEC_PLATFORM}
 	IF  '${EXEC_PLATFORM}' == 'local'
-		${firefox_driver_path}=   Update Firefox Webdriver
-		# Open local test browser	${site_url}		${BROWSER}
-		Open local test browser 	${site_url}		${BROWSER_LOCAL}	${firefox_driver_path}
+		${chrome_driver_path}=   Update Chrome Webdriver
+		# Open local test browser	${site_url_1}		${BROWSER}
+		Open local test browser 	${site_url_1}		${BROWSER_LOCAL}	${chrome_driver_path}
 	ELSE IF  '${EXEC_PLATFORM}' == 'cloud'
 		# [ WARN ] desired_capabilities has been deprecated and removed.
         # Please use options to configure browsers as per documentation.
-		# Open test browser	${site_url}		${BROWSER_CLOUD}		${CAPABILITIES_CLOUD}
-		Open test browser	${site_url}		${BROWSER_CLOUD}		${lt_cloud_options}
+		# Open test browser	${site_url_1}		${BROWSER_CLOUD}		${CAPABILITIES_CLOUD}
+		Open test browser	${site_url_1}		${BROWSER_CLOUD}		${lt_cloud_options}
 	END
 	Maximize Browser Window
 	Page should contain element  xpath://a[.='Input Form Submit']
@@ -106,3 +107,40 @@ Example 2: [Playground] Parallel Testing with Robot framework
         Log    Completed - Example 2: [Playground] Parallel Testing with Robot framework
 
 	[Teardown] 	Test Teardown
+
+Example 2: [Playground] Drag & Drop Mouse Operations Demo with Robot Framework
+	[tags]  Drag & Drop Mouse Operations Demo
+	[Timeout]   ${TIMEOUT}
+
+	# Port of https://github.com/hjsblogger/selenium-automation-python-tutorial/
+	# blob/main/tests/pytest/10_mouse_interactions.py#L18
+
+	# Get Environment Variables
+	Log To Console		Tests executed on: ${EXEC_PLATFORM}
+	IF  '${EXEC_PLATFORM}' == 'local'
+		${chrome_driver_path}=   Update Chrome Webdriver
+		# Open local test browser	${site_url_2}		${BROWSER}
+		Open local test browser 	${site_url_2}		${BROWSER_LOCAL}	${chrome_driver_path}
+	ELSE IF  '${EXEC_PLATFORM}' == 'cloud'
+		# [ WARN ] desired_capabilities has been deprecated and removed.
+        # Please use options to configure browsers as per documentation.
+		# Open test browser	${site_url_2}		${BROWSER_CLOUD}		${CAPABILITIES_CLOUD}
+		Open test browser	${site_url_2}		${BROWSER_CLOUD}		${lt_cloud_options}
+	END
+	Maximize Browser Window
+
+	Wait Until Element Is Visible  ${xDraggableFrame_1}  timeout=2
+	Wait Until Element Is Visible  ${xDraggableFrame_2}  timeout=2
+	Wait Until Element Is Visible  ${xDroppableFrame}  timeout=2
+
+	${elem_draggable_1} = 	Get WebElement	${xDraggableFrame_1}
+	${elem_draggable_2} =	Get WebElement 	${xDraggableFrame_2}
+	${elem_droppable} =		Get WebElement 	${xDroppableFrame}
+
+    Drag And Drop  ${elem_draggable_1}  ${elem_droppable}
+	Sleep  2s
+    Drag And Drop  ${elem_draggable_2}  ${elem_droppable}
+	Sleep  2s
+	Log    Completed - Drag & Drag Demo with Robot Framework
+
+	[Teardown]  Test Teardown
