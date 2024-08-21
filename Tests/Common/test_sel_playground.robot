@@ -61,7 +61,10 @@ Example 2: [Playground] Parallel Testing with Robot framework
 		# Open local test browser	${site_url}		${BROWSER}
 		Open local test browser 	${site_url}		${BROWSER_LOCAL}	${firefox_driver_path}
 	ELSE IF  '${EXEC_PLATFORM}' == 'cloud'
-		Open test browser	${site_url}		${BROWSER_CLOUD}		${CAPABILITIES_CLOUD}
+		# [ WARN ] desired_capabilities has been deprecated and removed.
+        # Please use options to configure browsers as per documentation.
+		# Open test browser	${site_url}		${BROWSER_CLOUD}		${CAPABILITIES_CLOUD}
+		Open test browser	${site_url}		${BROWSER_CLOUD}		${lt_cloud_options}
 	END
 	Maximize Browser Window
 	Page should contain element  xpath://a[.='Input Form Submit']

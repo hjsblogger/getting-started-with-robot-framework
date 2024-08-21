@@ -70,7 +70,10 @@ Test Teardown
 		# Open Browser    ${site_url}    chrome    executable_path=${chrome_driver_path}
 		Open local test browser 	${site_url}		${BROWSER_LOCAL}	${chrome_driver_path}
 	ELSE IF  '${EXEC_PLATFORM}' == 'cloud'
-		Open test browser	${site_url}		${BROWSER_CLOUD}		${CAPABILITIES_CLOUD}
+        # [ WARN ] desired_capabilities has been deprecated and removed.
+        # Please use options to configure browsers as per documentation.
+		# Open test browser	${site_url}		${BROWSER_CLOUD}		${CAPABILITIES_CLOUD}
+        Open test browser	${site_url}		${BROWSER_CLOUD}		${lt_cloud_options}
 	END
 	Maximize Browser Window
 	Move to Element

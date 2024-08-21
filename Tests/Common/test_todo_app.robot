@@ -56,15 +56,17 @@ ${BROWSER_LOCAL_3}	  	  ${lt_options_local_3['browserName']}
 ${BROWSER_CLOUD_1}	      ${lt_options_cloud_1['browserName']}
 &{CAPABILITIES_CLOUD_1}     LT:Options=&{lt_options_cloud_1}
 
+# &{lt_options}       browserName=${browserName}      name=RobotFramework Lambda Test    buildName=Robot Build
+
 *** Comments ***
 # Configuration for second test scenario
 
 *** Variables ***
 
 &{lt_options_cloud_2}
-    ...  browserName=Safari
-    ...  platformName=MacOS Ventura
-    ...  browserVersion=16.0
+    ...  browserName=Firefox
+    ...  platformName=Windows 11
+    ...  browserVersion=latest
     ...  visual=true
     ...	 w3c=true
 	...  console=true
@@ -79,7 +81,7 @@ ${BROWSER_CLOUD_2}	      ${lt_options_cloud_2['browserName']}
 &{lt_options_cloud_3}
     ...  browserName=Chrome
     ...  platformName=Windows 10
-    ...  browserVersion=latest
+    ...  browserVersion=latest-2
     ...  visual=true
     ...	 w3c=true
 	...  console=true
@@ -114,7 +116,10 @@ Example 1: [ToDo] Demo with Robot framework
 		# Open Browser    ${site_url}    chrome    executable_path=${chrome_driver_path}
 		Open local test browser 	${site_url}		${BROWSER_LOCAL_1}	${chrome_driver_path}
 	ELSE
-		Open test browser	${site_url}		${BROWSER_CLOUD_1}		${CAPABILITIES_CLOUD_1}
+		# [ WARN ] desired_capabilities has been deprecated and removed.
+        # Please use options to configure browsers as per documentation.
+		# Open test browser	${site_url}		${BROWSER_CLOUD_1}		${CAPABILITIES_CLOUD_1}
+		Open test browser	${site_url}		${BROWSER_CLOUD_1}		${lt_options_cloud_1}
 	END
 	Maximize Browser Window
 	Sleep  3s
@@ -142,7 +147,10 @@ Example 2: [ToDo] Demo with Robot framework
 		# Open Browser    ${site_url}    edge	executable_path=${edge_driver_path}
 		Open local test browser 	${site_url}		${BROWSER_LOCAL_2}	${edge_driver_path}
 	ELSE IF  '${EXEC_PLATFORM}' == 'cloud'
-		Open test browser	${site_url}		${BROWSER_CLOUD_2}		${CAPABILITIES_CLOUD_2}
+		# [ WARN ] desired_capabilities has been deprecated and removed.
+        # Please use options to configure browsers as per documentation.
+		# Open test browser	${site_url}		${BROWSER_CLOUD_2}		${CAPABILITIES_CLOUD_2}
+		Open test browser	${site_url}		${BROWSER_CLOUD_2}		${lt_options_cloud_2}
 	END
 	Maximize Browser Window
 	Sleep  3s
@@ -172,7 +180,10 @@ Example 3: [ToDo] Demo with Robot framework
 		# Open Browser    ${site_url}    edge	executable_path=${edge_driver_path}
 		Open local test browser 	${site_url}		${BROWSER_LOCAL_3}	${firefox_driver_path}
 	ELSE IF  '${EXEC_PLATFORM}' == 'cloud'
-		Open test browser	${site_url}		${BROWSER_CLOUD_3}		${CAPABILITIES_CLOUD_3}
+		# [ WARN ] desired_capabilities has been deprecated and removed.
+        # Please use options to configure browsers as per documentation.
+		# Open test browser	${site_url}		${BROWSER_CLOUD_3}		${CAPABILITIES_CLOUD_3}
+		Open test browser	${site_url}		${BROWSER_CLOUD_3}		${lt_options_cloud_3}
 	END
 	Maximize Browser Window
 	Sleep  3s
