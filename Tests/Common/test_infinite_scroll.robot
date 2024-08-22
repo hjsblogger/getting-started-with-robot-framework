@@ -89,6 +89,7 @@ Click Element Infinite Scroll
 	Log To Console		${status}
 	Run Keyword If  '${status}' != 'None'  Fail  Element not found on page
     # If it reaches here, the product is available on the page
+    Scroll Element Into View    ${xProduct}
     Click Element       ${xProduct}
     Sleep   ${SCROLL_PAUSE_TIME}
     # Community Rocks :) https://forum.robotframework.org/t/
